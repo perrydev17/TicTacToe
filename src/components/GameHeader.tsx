@@ -2,7 +2,7 @@ import React from 'react';
 import { Monitor, Settings as SettingsIcon } from 'lucide-react';
 
 interface GameHeaderProps {
-  onOpenSettings?: () => void;
+  onOpenSettings: () => void;
 }
 
 const GameHeader = ({ onOpenSettings }: GameHeaderProps) => {
@@ -25,7 +25,7 @@ const GameHeader = ({ onOpenSettings }: GameHeaderProps) => {
         onClick={onOpenSettings}
         className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/5 shadow-xl"
       >
-        {/* <SettingsIcon size={20} className="text-white/60" /> */}
+        <SettingsIcon size={20} className="text-white/60" />
       </button>
     </header>
   );

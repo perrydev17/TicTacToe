@@ -1,14 +1,24 @@
 import React from 'react';
-import type { Player } from '..//types';
+import type { Player, AvatarConfig } from '..//types';
+import DynamicIcon from './DynamicIcon';
 
 interface SquareProps {
-  value?: Player;
-  onClick?: () => void;
-  isWinner?: boolean | null;
-  disabled?: boolean;
+  value: Player;
+  onClick: () => void;
+  isWinner: boolean | null;
+  disabled: boolean;
+  playerXAvatar: AvatarConfig;
+  playerOAvatar: AvatarConfig;
 }
 
-const Square = ({ value, onClick, isWinner, disabled }: SquareProps) => {
+const Square = ({
+  value,
+  onClick,
+  isWinner,
+  disabled,
+  playerXAvatar,
+  playerOAvatar,
+}: SquareProps) => {
   return (
     <button
       onClick={onClick}
@@ -27,7 +37,11 @@ const Square = ({ value, onClick, isWinner, disabled }: SquareProps) => {
               ${value === 'X' ? 'text-cyber-cyan' : 'text-cyber-pink'}
             `}
           >
-            X
+            <DynamicIcon
+              config={value === 'X' ? playerXAvatar : playerOAvatar}
+              player={value}
+              className="w-full h-full"
+            />
           </div>
         </div>
       )}
