@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import type { Player, GameMode, GameDifficulty, WinnerInfo } from '../types';
 import { checkWinner, isDraw, getBestMove, getRandomMove } from '../utils';
 
-export function useGameCore(
+const useGameCore = (
   gameMode: GameMode,
   difficulty: GameDifficulty,
   onGameEnd: (hasWinner: boolean) => void,
-) {
+) => {
   const [squares, setSquares] = useState<Player[]>(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
   const [winnerInfo, setWinnerInfo] = useState<WinnerInfo | null>(null);
@@ -50,4 +50,6 @@ export function useGameCore(
   }, []);
 
   return { squares, isXNext, winnerInfo, handleMove, resetCore };
-}
+};
+
+export default useGameCore;
