@@ -1,7 +1,13 @@
 import './App.css';
+import GameBoard from './components/GameBoard';
 
 function App() {
-  return <>Hi</>;
+  return (
+    <>
+      Hi
+      <GameBoard />
+    </>
+  );
 }
 
 export default App;
