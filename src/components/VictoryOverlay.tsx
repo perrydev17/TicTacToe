@@ -1,4 +1,3 @@
-import React from 'react';
 import { RotateCcw } from 'lucide-react';
 import { motion } from 'motion/react';
 import type { WinnerInfo, AvatarConfig } from '../types';

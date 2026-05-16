@@ -1,4 +1,3 @@
-import React from 'react';
 import { Monitor, Settings as SettingsIcon } from 'lucide-react';
 
 interface GameHeaderProps {

@@ -1,4 +1,3 @@
-import React from 'react';
 import DynamicIcon from './DynamicIcon';
 import type { WinnerInfo, AvatarConfig } from '../types';
 

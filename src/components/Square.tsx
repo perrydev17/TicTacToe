@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import type { Player, AvatarConfig } from '..//types';
 import DynamicIcon from './DynamicIcon';
