@@ -6,6 +6,7 @@ import GameFooter from './GameFooter';
 import Settings from './Settings';
 import useTicTacToe from '../hooks/useTicTacToe';
 import VictoryOverlay from './VictoryOverlay';
+import WinningLine from './WinningLine';
 import type { SettingsTab } from '../types';
 import { isDraw } from '../utils';
 
@@ -69,6 +70,15 @@ const GameBoard = () => {
                 playerOAvatar={playerOAvatar}
               />
             ))}
+          </div>
+          <div className="absolute inset-0 pointer-events-none p-3 preserve-3d">
+            {showWinnerLine && winnerInfo?.line && (
+              <WinningLine
+                key={`${winnerInfo.line.join('-')}-${squares.filter(Boolean).length}`}
+                line={winnerInfo.line}
+                winner={winnerInfo.winner}
+              />
+            )}
           </div>
         </div>
       </main>
