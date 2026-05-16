@@ -185,3 +185,28 @@ src/
 | **PWA / installable app** | Service worker + web app manifest for offline play and home-screen install     |
 | **Leaderboard**           | Persistent rankings with a simple backend or Supabase                          |
 | **Theme toggle**          | Light mode variant of the cyberpunk palette                                    |
+
+---
+
+## React Native
+
+The pure-logic modules (`src/utils.ts` and `src/types.ts`) have no browser dependencies and can be shared directly with a React Native target. A clean migration path:
+
+- Move the current web app into a `web/` folder
+- Create a `native/` folder for the React Native project
+- Keep `utils.ts` and `types.ts` in a `shared/` folder so both platforms import from the same source
+
+```
+TicTacToe/
+├── shared/
+│   ├── utils.ts          # Pure game logic (checkWinner, minimax, etc.)
+│   └── types.ts          # Shared TypeScript types
+│
+├── web/                  # Current React web app (moved here)
+│   ├── src/
+│   └── ...
+│
+└── native/               # React Native app
+    ├── src/
+    └── ...
+```
