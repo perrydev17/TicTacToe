@@ -2,7 +2,7 @@ import type { LucideIcon } from 'lucide-react';
 
 export type Player = 'X' | 'O' | null;
 export type GameDifficulty = 'Easy' | 'Hard';
-export type GameMode = 'pvc'; //player vs cpu;
+export type GameMode = 'pvc' | 'pvp'; //player vs cpu, can scale to pvp
 export type GameStatus = 'playing' | 'won' | 'draw';
 
 export interface WinnerInfo {

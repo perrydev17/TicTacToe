@@ -3,15 +3,16 @@ import { useState, useRef, useCallback } from 'react';
 const useGameOverlay = () => {
   const [showWinnerLine, setShowWinnerLine] = useState(false);
   const [showVictoryOverlay, setShowVictoryOverlay] = useState(false);
-
+  const lineTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const overlayTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   const triggerGameEnd = useCallback((hasWinner: boolean) => {
     if (hasWinner) {
+      lineTimeoutRef.current = setTimeout(() => setShowWinnerLine(true), 1100);
     }
     overlayTimeoutRef.current = setTimeout(
       () => setShowVictoryOverlay(true),
-      2500,
+      2200,
     );
   }, []);
 

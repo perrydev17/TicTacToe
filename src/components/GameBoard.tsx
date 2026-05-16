@@ -27,6 +27,8 @@ const GameBoard = () => {
     playerOAvatar,
     setPlayerOAvatar,
     showVictoryOverlay,
+    handleFileUpload,
+    showWinnerLine,
   } = useTicTacToe();
 
   const [activeSettingsTab, setActiveSettingsTab] =
@@ -34,7 +36,6 @@ const GameBoard = () => {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white flex flex-col items-center justify-center p-4 overflow-hidden relative font-sans">
-      GameBoard
       <GameHeader onOpenSettings={() => setShowSettings(true)} />
       <PlayerStatus
         isXNext={isXNext}
@@ -56,7 +57,9 @@ const GameBoard = () => {
                 key={`${idx}-${square}`}
                 value={square}
                 onClick={() => handleMove(idx)}
-                isWinner={false}
+                isWinner={
+                  (showWinnerLine && winnerInfo?.line?.includes(idx)) || false
+                }
                 disabled={
                   !!winnerInfo ||
                   isDraw(squares) ||
@@ -92,6 +95,7 @@ const GameBoard = () => {
           setPlayerOAvatar={setPlayerOAvatar}
           activeTab={activeSettingsTab}
           setActiveTab={setActiveSettingsTab}
+          handleFileUpload={handleFileUpload}
         />
       )}
     </div>

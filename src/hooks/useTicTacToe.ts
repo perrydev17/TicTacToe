@@ -9,10 +9,16 @@ const useTicTacToe = () => {
   const [difficulty, setDifficulty] = useState<GameDifficulty>('Hard');
   const [showSettings, setShowSettings] = useState(false);
 
-  const { playerXAvatar, setPlayerXAvatar, playerOAvatar, setPlayerOAvatar } =
-    useAvatars();
+  const {
+    playerXAvatar,
+    setPlayerXAvatar,
+    playerOAvatar,
+    setPlayerOAvatar,
+    handleFileUpload,
+  } = useAvatars();
 
-  const { showVictoryOverlay, triggerGameEnd, resetOverlay } = useGameOverlay();
+  const { showWinnerLine, showVictoryOverlay, triggerGameEnd, resetOverlay } =
+    useGameOverlay();
 
   const { squares, isXNext, winnerInfo, handleMove, resetCore } = useGameCore(
     gameMode,
@@ -42,6 +48,8 @@ const useTicTacToe = () => {
     playerOAvatar,
     setPlayerOAvatar,
     showVictoryOverlay,
+    handleFileUpload,
+    showWinnerLine,
   };
 };
 
