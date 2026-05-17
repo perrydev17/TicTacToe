@@ -43,7 +43,7 @@ const DynamicIcon = ({ config, player, className }: DynamicIconProps) => {
         <img
           src={config.value}
           alt={`Player ${player} avatar`}
-          className="w-full h-full object-cover grayscale contrast-125 brightness-[1.4]"
+          className="w-full h-full object-cover"
           onError={() => setImgError(true)}
         />
       </div>
