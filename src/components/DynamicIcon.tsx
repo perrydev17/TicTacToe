@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   X as LucideX,
   Circle,
@@ -28,26 +29,29 @@ interface DynamicIconProps {
 }
 
 const DynamicIcon = ({ config, player, className }: DynamicIconProps) => {
-  if (config.type === 'image') {
+  const [imgError, setImgError] = useState(false);
+
+  useEffect(() => {
+    setImgError(false);
+  }, [config.value]);
+
+  if (config.type === 'image' && !imgError) {
     return (
       <div
         className={`rounded-xl overflow-hidden border border-white/10 ${className}`}
       >
         <img
           src={config.value}
-          alt="Avatar"
+          alt={`Player ${player} avatar`}
           className="w-full h-full object-cover grayscale contrast-125 brightness-[1.4]"
+          onError={() => setImgError(true)}
         />
       </div>
     );
   }
-  const preset = PRESET_ICONS.find((p) => p.name === config.value);
 
-  const IconComponent = preset
-    ? preset.Icon
-    : player === 'X'
-      ? LucideX
-      : Circle;
+  const preset = PRESET_ICONS.find((p) => p.name === config.value);
+  const IconComponent = preset ? preset.Icon : player === 'X' ? LucideX : Circle;
 
   return <IconComponent className={className} />;
 };

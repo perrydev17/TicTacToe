@@ -10,6 +10,7 @@ const useGameCore = (
   const [squares, setSquares] = useState<Player[]>(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
   const [winnerInfo, setWinnerInfo] = useState<WinnerInfo | null>(null);
+  const [isAiThinking, setIsAiThinking] = useState(false);
 
   const handleMove = useCallback(
     (i: number) => {
@@ -31,15 +32,19 @@ const useGameCore = (
 
   useEffect(() => {
     if (gameMode === 'pvc' && !isXNext && !winnerInfo) {
-      // mock cpu "thinking"
+      setIsAiThinking(true);
       const timer = setTimeout(() => {
         const move =
           difficulty === 'Hard'
             ? getBestMove(squares, 'O')
             : getRandomMove(squares);
         if (move !== -1) handleMove(move);
+        setIsAiThinking(false);
       }, 800);
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+        setIsAiThinking(false);
+      };
     }
   }, [isXNext, gameMode, squares, winnerInfo, difficulty, handleMove]);
 
@@ -49,7 +54,7 @@ const useGameCore = (
     setWinnerInfo(null);
   }, []);
 
-  return { squares, isXNext, winnerInfo, handleMove, resetCore };
+  return { squares, isXNext, winnerInfo, isAiThinking, handleMove, resetCore };
 };
 
 export default useGameCore;

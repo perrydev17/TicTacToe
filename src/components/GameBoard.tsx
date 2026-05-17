@@ -19,6 +19,7 @@ const GameBoard = () => {
     difficulty,
     setDifficulty,
     winnerInfo,
+    isAiThinking,
     showSettings,
     setShowSettings,
     handleMove,
@@ -41,6 +42,7 @@ const GameBoard = () => {
       <PlayerStatus
         isXNext={isXNext}
         winnerInfo={winnerInfo}
+        isAiThinking={isAiThinking}
         playerXAvatar={playerXAvatar}
         playerOAvatar={playerOAvatar}
       />

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { motion } from 'motion/react';
 import type { WinnerInfo, AvatarConfig } from '../types';
@@ -16,8 +17,21 @@ const VictoryOverlay = ({
   playerOAvatar,
   onReset,
 }: VictoryOverlayProps) => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onReset();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [onReset]);
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-6 backdrop-blur-xl bg-black/60">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-6 backdrop-blur-xl bg-black/60"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="victory-title"
+    >
       <motion.div
         initial={{ scale: 0.9, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -36,7 +50,7 @@ const VictoryOverlay = ({
             <RotateCcw className="w-12 h-12 text-cyber-yellow relative z-10" />
           )}
         </div>
-        <h2 className="text-4xl font-bold uppercase tracking-tight mb-3 text-white">
+        <h2 id="victory-title" className="text-4xl font-bold uppercase tracking-tight mb-3 text-white">
           {winnerInfo?.winner === 'X'
             ? 'You Win'
             : winnerInfo?.winner === 'O'
@@ -46,9 +60,7 @@ const VictoryOverlay = ({
         <p className="text-[11px] font-mono text-white/40 uppercase tracking-[0.4em] mb-12 bg-white/5 px-6 py-2 rounded-full border border-white/5">
           {winnerInfo?.winner === 'X'
             ? 'Congratulations!'
-            : winnerInfo?.winner === 'O'
-              ? 'Want to try again?'
-              : 'Want to try again?'}
+            : 'Want to try again?'}
         </p>
         <button
           onClick={onReset}

@@ -4,6 +4,7 @@ import type { WinnerInfo, AvatarConfig } from '../types';
 interface PlayerStatusProps {
   isXNext: boolean;
   winnerInfo: WinnerInfo | null;
+  isAiThinking: boolean;
   playerXAvatar: AvatarConfig;
   playerOAvatar: AvatarConfig;
 }
@@ -11,6 +12,7 @@ interface PlayerStatusProps {
 const PlayerStatus = ({
   isXNext,
   winnerInfo,
+  isAiThinking,
   playerXAvatar,
   playerOAvatar,
 }: PlayerStatusProps) => {
@@ -32,8 +34,11 @@ const PlayerStatus = ({
           />
         </div>
       </div>
-      <div className="text-[10px] font-mono text-white/ uppercase tracking-[0.5em] font-bold animate-pulse">
-        Versus
+      <div
+        className="text-[10px] font-mono text-white/50 uppercase tracking-[0.5em] font-bold animate-pulse"
+        aria-live="polite"
+      >
+        {isAiThinking ? 'Thinking…' : 'Versus'}
       </div>
       <div
         className={`flex flex-col items-center transition-all duration-500 ${isXNext && !winnerInfo ? 'opacity-30 scale-90' : 'opacity-100 scale-100'}`}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import type {
   GameMode,
@@ -43,16 +43,33 @@ const Settings = ({
   setActiveTab,
   handleFileUpload,
 }: SettingsMenuProps) => {
+  const [fileError, setFileError] = useState<string | null>(null);
+
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    player: 'X' | 'O',
+  ) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const allowed = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'];
+    if (!allowed.includes(file.type)) {
+      setFileError('Unsupported file type. Please upload a PNG, JPG, WEBP, or GIF.');
+      e.target.value = '';
+      return;
+    }
+    setFileError(null);
+    handleFileUpload(e, player);
+  };
+
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/80 backdrop-blur-2xl"
-      onClick={onClose}
+      onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <motion.div
         initial={{ scale: 0.95, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         className="w-full max-w-lg bg-white/5 border border-white/10 rounded-[3rem] overflow-hidden flex flex-col shadow-2xl backdrop-blur-3xl border-white/20"
-        onClick={(e) => e.stopPropagation()}
       >
         <div className="p-10 pb-4">
           <h2 className="text-3xl font-bold mb-8 uppercase tracking-tighter text-white">
@@ -193,9 +210,14 @@ const Settings = ({
                       type="file"
                       className="hidden"
                       accept="image/png,image/jpeg,image/webp,image/gif"
-                      onChange={(e) => handleFileUpload(e, player)}
+                      onChange={(e) => handleFileChange(e, player)}
                     />
                   </label>
+                  {fileError && (
+                    <p className="mt-2 text-[10px] font-mono text-red-400 uppercase tracking-widest">
+                      {fileError}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>

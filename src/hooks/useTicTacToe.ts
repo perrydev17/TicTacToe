@@ -20,7 +20,7 @@ const useTicTacToe = () => {
   const { showWinnerLine, showVictoryOverlay, triggerGameEnd, resetOverlay } =
     useGameOverlay();
 
-  const { squares, isXNext, winnerInfo, handleMove, resetCore } = useGameCore(
+  const { squares, isXNext, winnerInfo, isAiThinking, handleMove, resetCore } = useGameCore(
     gameMode,
     difficulty,
     triggerGameEnd,
@@ -39,6 +39,7 @@ const useTicTacToe = () => {
     difficulty,
     setDifficulty,
     winnerInfo,
+    isAiThinking,
     showSettings,
     setShowSettings,
     handleMove,
