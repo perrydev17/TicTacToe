@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Cheddr Tic Tac Toe",
+    "slug": "cheddr-tic-tac-toe",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/cheddr-icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/cheddr-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#050505"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos for custom avatars."
+        }
+      ]
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.cheddr.tictactoe",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Used to set a custom player avatar."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/cheddr-icon.png",
+        "backgroundColor": "#050505"
+      },
+      "package": "com.cheddr.tictactoe"
+    },
+    "web": {
+      "bundler": "metro",
+      "backgroundColor": "#050505"
+    }
+  }
+}
