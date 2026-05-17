@@ -1,6 +1,6 @@
 # TicTacToe
-<img width="600" height="848" alt="TicTacToe" src="https://github.com/user-attachments/assets/bb5fbe2e-8a2b-45b9-9c26-71e8098fa058" />
 
+<img width="600" height="848" alt="TicTacToe" src="https://github.com/user-attachments/assets/bb5fbe2e-8a2b-45b9-9c26-71e8098fa058" />
 
 A fully client-side Tic Tac Toe game built with React and TypeScript, featuring a 3D isometric board, cyberpunk aesthetics, and an AI opponent powered by the minimax algorithm.
 
@@ -192,23 +192,20 @@ src/
 
 ## React Native
 
-The pure-logic modules (`src/utils.ts` and `src/types.ts`) have no browser dependencies and can be shared directly with a React Native target. A clean migration path:
+Please refer to the **[React Native README](https://github.com/perrydev17/TicTacToe/blob/develop/react-native/README.md)** for full setup, run commands, and deployment guide.
 
-- Move the current web app into a `web/` folder
-- Create a `native/` folder for the React Native project
-- Keep `utils.ts` and `types.ts` in a `shared/` folder so both platforms import from the same source
+The core idea behind the mobile implementation is to have a single source of truth for all game logic and state. All hooks (`useTicTacToe`, `useGameCore`, `useGameOverlay`) and utilities (`checkWinner`, `getBestMove`, `isDraw`) live in a platform-agnostic `shared/` package. The `web/` and `react-native/` directories each own only their UI layer — components, styles, and platform-specific integrations like haptics or CSS transforms. A bug fixed in `useGameCore` is fixed on both platforms simultaneously, and the AI behaves identically everywhere.
 
 ```
 TicTacToe/
 ├── shared/
-│   ├── utils.ts          # Pure game logic (checkWinner, minimax, etc.)
-│   └── types.ts          # Shared TypeScript types
+│   ├── hooks/            # useTicTacToe, useGameCore, useGameOverlay, useAvatars
+│   ├── utils.ts          # checkWinner, isDraw, getBestMove, getRandomMove
+│   └── types.ts          # Player, AvatarConfig, WinnerInfo, GameMode…
 │
-├── web/                  # Current React web app (moved here)
-│   ├── src/
-│   └── ...
+├── web/                  # React + Vite — imports from @shared/*
+│   └── src/
 │
-└── native/               # React Native app
-    ├── src/
-    └── ...
+└── react-native/         # Expo — imports from @shared/*
+   └── components/
 ```
