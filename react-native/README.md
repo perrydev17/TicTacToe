@@ -2,8 +2,8 @@
 
 Mobile implementation of the Tic Tac Toe game, built with Expo and React Native. Shares all game logic with the web version via the `../shared` package.
 
-!<img width="478" height="842" alt="tictactoe-react-native" src="https://github.com/user-attachments/assets/58caa528-491b-486e-b124-8a655e8bf2a8" />
-!<img width="488" height="847" alt="tictactoe-react-native2" src="https://github.com/user-attachments/assets/daad892f-c6fb-48af-876f-fc67afd340e1" />
+<img width="478" height="842" alt="tictactoe-react-native" src="https://github.com/user-attachments/assets/58caa528-491b-486e-b124-8a655e8bf2a8" />
+<img width="488" height="847" alt="tictactoe-react-native2" src="https://github.com/user-attachments/assets/daad892f-c6fb-48af-876f-fc67afd340e1" />
 
 ---
 
