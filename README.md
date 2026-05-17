@@ -2,7 +2,7 @@
 # TicTacToe
 
 <img width="600" height="848" alt="TicTacToe" src="https://github.com/user-attachments/assets/bb5fbe2e-8a2b-45b9-9c26-71e8098fa058" />
-<img width="547" height="719" alt="tictactoe-react2" src="https://github.com/user-attachments/assets/09149839-7c60-4fcc-b12e-a471ca74e294" />
+<img width="548" height="711" alt="tictactoe-settings" src="https://github.com/user-attachments/assets/2edd5b00-2f12-4331-bd44-53c71faf9bb7" />
 
 A fully client-side Tic Tac Toe game built with React and TypeScript, featuring a 3D isometric board, cyberpunk aesthetics, and an AI opponent powered by the minimax algorithm.
 
