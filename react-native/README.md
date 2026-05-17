@@ -23,7 +23,7 @@ Mobile implementation of the Tic Tac Toe game, built with Expo and React Native.
 
 ```bash
 git clone <repo-url>
-git checkout develop
+git checkout react-native-version
 cd react-native
 npm install
 ```
