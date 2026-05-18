@@ -194,7 +194,7 @@ src/
 
 ## React Native
 
-Please refer to the **[React Native README](https://github.com/perrydev17/TicTacToe/blob/develop/react-native/README.md)** for full setup, run commands, and deployment guide.
+Please refer to the **[React Native README](https://github.com/perrydev17/TicTacToe/blob/react-native-version/react-native/README.md)** for full setup, run commands, and deployment guide.
 
 The core idea behind the mobile implementation is to have a single source of truth for all game logic and state. All hooks (`useTicTacToe`, `useGameCore`, `useGameOverlay`) and utilities (`checkWinner`, `getBestMove`, `isDraw`) live in a platform-agnostic `shared/` package. The `web/` and `react-native/` directories each own only their UI layer — components, styles, and platform-specific integrations like haptics or CSS transforms. A bug fixed in `useGameCore` is fixed on both platforms simultaneously, and the AI behaves identically everywhere.
 
